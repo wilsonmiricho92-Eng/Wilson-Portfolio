@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilson · Nursing Academic Writing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #132240;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --gold: #BA7517;
+    --gold-light: #FAEEDA;
+    --cream: #faf9f6;
+    --slate: #64748b;
+    --slate-light: #94a3b8;
+    --white: #ffffff;
+    --border: rgba(10,22,40,0.08);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--teal-mid); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-mid); }
+
+  .hero {
+    background: var(--navy);
+    padding: 6rem 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.12);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; right: 60px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.07);
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(93,202,165,0.12);
+    color: var(--teal-mid);
+    border: 1px solid rgba(93,202,165,0.25);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 500;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--teal-mid); }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #0F6E56; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+  .credentials-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 3rem;
+  }
+  .cred-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    align-items: center;
+  }
+  .cred-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--slate); }
+  .cred-item strong { color: var(--navy); font-weight: 500; }
+  .cred-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+  section { padding: 5rem 3rem; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .section-lead {
+    font-size: 16px;
+    color: var(--slate);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+  .stat-cell { background: white; padding: 1.75rem 1.5rem; text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-num span { color: var(--teal); }
+  .stat-label { font-size: 12px; color: var(--slate); letter-spacing: 0.04em; }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .expertise-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .expertise-card:hover { border-color: var(--teal-mid); transform: translateY(-2px); }
+  .exp-icon {
+    width: 40px; height: 40px;
+    background: var(--teal-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 19px;
+    color: var(--teal);
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+  .exp-tag {
+    font-size: 11px;
+    background: var(--teal-light);
+    color: #0F6E56;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .exp-body { font-size: 13.5px; color: var(--slate); line-height: 1.65; }
+
+  .work-alt { background: white; }
+  .work-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .tab-btn {
+    padding: 9px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--slate);
+    background: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border-right: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--navy); color: white; font-weight: 500; }
+  .tab-btn:not(.active):hover { background: var(--cream); color: var(--navy); }
+
+  .excerpt-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: none;
+  }
+  .excerpt-card.active { display: block; }
+  .excerpt-header {
+    background: var(--navy);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .excerpt-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: white;
+    max-width: 500px;
+    line-height: 1.3;
+  }
+  .excerpt-meta { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .excerpt-badge {
+    background: rgba(93,202,165,0.15);
+    color: var(--teal-mid);
+    border: 1px solid rgba(93,202,165,0.3);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .excerpt-body { padding: 2rem; background: white; }
+  .excerpt-body blockquote {
+    border-left: 3px solid var(--teal-mid);
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.85;
+    font-style: italic;
+  }
+  .excerpt-caption { font-size: 12px; color: var(--slate-light); letter-spacing: 0.03em; }
+
+  .testimonials-alt { background: var(--navy); }
+  .testimonials-alt h2 { color: white; }
+  .testimonials-alt .section-label { color: var(--teal-mid); }
+  .testimonials-alt .section-lead { color: rgba(255,255,255,0.5); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .testi-card:hover { border-color: rgba(93,202,165,0.3); }
+  .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+  .star {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .testi-text { font-size: 14.5px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 1.25rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(93,202,165,0.2);
+    border: 1px solid rgba(93,202,165,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--teal-mid);
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: 13px; font-weight: 500; color: white; }
+  .testi-role { font-size: 11.5px; color: rgba(255,255,255,0.4); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+  }
+  .process-step { padding: 1.5rem; text-align: center; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: rgba(29,158,117,0.15);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
+  .step-desc { font-size: 13px; color: var(--slate); line-height: 1.65; }
+
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-info p { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-list li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--navy); }
+  .contact-icon {
+    width: 36px; height: 36px;
+    background: var(--teal-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .contact-form {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 500; color: var(--navy); letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: var(--cream);
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--teal-mid); }
+  .form-full { grid-column: 1 / -1; }
+  .form-submit {
+    width: 100%;
+    background: var(--navy);
+    color: white;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--navy-mid); }
+
+  footer { background: var(--navy); padding: 2.5rem 3rem; text-align: center; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: white; margin-bottom: 0.5rem; }
+  .footer-logo span { color: var(--teal-mid); }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section, .hero, .credentials-bar { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .hero { padding-top: 3.5rem; padding-bottom: 3rem; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Wilson<span>.</span>RN</div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#work">Sample Work</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Graduate Nursing Scholar · Academic Writer</div>
+    <h1>Evidence-Based Writing<br>for <em>Nursing & Healthcare</em></h1>
+    <p class="hero-sub">
+      Advanced practice nursing student and academic writer specializing in psychiatric-mental health, public health policy, evidence-based practice, and graduate-level clinical documentation.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        &#10003; &nbsp;Hire Me
+      </button>
+      <button class="btn-outline" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+        View Sample Work &rarr;
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="credentials-bar">
+  <div class="cred-inner">
+    <div class="cred-item"><div class="cred-dot"></div><strong>MSN (PMHNP)</strong> &nbsp;Purdue University Global</div>
+    <div class="cred-item"><div class="cred-dot"></div><strong>APA 7th Edition</strong> &nbsp;Certified Proficiency</div>
+    <div class="cred-item"><div class="cred-dot"></div><strong>PMHNP Concentration</strong> &nbsp;Psychiatric-Mental Health</div>
+    <div class="cred-item"><div class="cred-dot"></div><strong>4.0 GPA</strong> &nbsp;Graduate Standing</div>
+    <div class="cred-item"><div class="cred-dot"></div><strong>EBP & QI</strong> &nbsp;Clinical Research Focus</div>
+  </div>
+</div>
+
+<section style="background: white; padding-top: 4rem; padding-bottom: 4rem;">
+  <div class="section-inner">
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Graduate Courses Active</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Major Academic Papers</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">APA 7th Compliance</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">5<span>yr</span></div>
+        <div class="stat-label">Nursing Background</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise" style="background: var(--cream);">
+  <div class="section-inner">
+    <div class="section-label">Areas of Expertise</div>
+    <h2>What I Write Well</h2>
+    <p class="section-lead">From evidence-based practice projects to psychiatric clinical documentation, I bring graduate-level rigor to every deliverable.</p>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="exp-icon">&#129504;</div>
+        <h3>Psychiatric-Mental Health</h3>
+        <p class="exp-body">SOAP notes, psychotherapy case studies, trauma-informed care papers, PMHNP clinical documentation, and mental health policy analysis.</p>
+        <div class="exp-tags"><span class="exp-tag">PMHNP</span><span class="exp-tag">SOAP Notes</span><span class="exp-tag">Psychotherapy</span></div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">&#128203;</div>
+        <h3>Evidence-Based Practice</h3>
+        <p class="exp-body">PICO question development, systematic literature reviews, DNP practice needs assessments, and quality improvement frameworks (PDSA, Lean).</p>
+        <div class="exp-tags"><span class="exp-tag">EBP</span><span class="exp-tag">PICO</span><span class="exp-tag">Literature Review</span></div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">&#128137;</div>
+        <h3>Advanced Pharmacology</h3>
+        <p class="exp-body">Drug reference tables, lifespan pharmacology essays, antihypertensive and psychiatric medication write-ups, and clinical reasoning papers.</p>
+        <div class="exp-tags"><span class="exp-tag">Psychopharmacology</span><span class="exp-tag">Drug Tables</span><span class="exp-tag">Lifespan</span></div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">&#127973;</div>
+        <h3>Public Health & Policy</h3>
+        <p class="exp-body">Healthcare legislation analysis (e.g., SB 6071), OIG compliance frameworks, ethics vs. compliance papers, and community health policy briefs.</p>
+        <div class="exp-tags"><span class="exp-tag">Health Policy</span><span class="exp-tag">Compliance</span><span class="exp-tag">Community Health</span></div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">&#128200;</div>
+        <h3>Quality Improvement & Research</h3>
+        <p class="exp-body">CAUTI prevention bundles, hospital QI project charters, WBS development, stakeholder engagement plans, and DNP-level practice change proposals.</p>
+        <div class="exp-tags"><span class="exp-tag">DNP</span><span class="exp-tag">QI Projects</span><span class="exp-tag">Project Charter</span></div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">&#128218;</div>
+        <h3>APA 7th Edition Formatting</h3>
+        <p class="exp-body">Full APA compliance — title pages, running heads, in-text citations, references, DOI formatting, level headings, and table/figure notation.</p>
+        <div class="exp-tags"><span class="exp-tag">APA 7th</span><span class="exp-tag">Citations</span><span class="exp-tag">References</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="work-alt">
+  <div class="section-inner">
+    <div class="section-label">Portfolio Excerpts</div>
+    <h2>Sample Academic Writing</h2>
+    <p class="section-lead">Excerpts from graduate-level papers, clinical documents, and research projects across multiple courses and disciplines.</p>
+
+    <div class="work-tabs">
+      <button class="tab-btn active" onclick="showTab('cauti', this)">DNP / EBP</button>
+      <button class="tab-btn" onclick="showTab('psych', this)">Psychiatric Nursing</button>
+      <button class="tab-btn" onclick="showTab('pharma', this)">Pharmacology</button>
+      <button class="tab-btn" onclick="showTab('policy', this)">Health Policy</button>
+    </div>
+
+    <div id="tab-cauti" class="excerpt-card active">
+      <div class="excerpt-header">
+        <div>
+          <div class="excerpt-title">Nurse-Driven CAUTI Prevention Bundle: A Practice Needs Assessment</div>
+          <div class="excerpt-meta">NU672 · DNP Scholarly Project · Memorial Hospital West · APA 7th Edition</div>
+        </div>
+        <div class="excerpt-badge">Evidence-Based Practice</div>
+      </div>
+      <div class="excerpt-body">
+        <blockquote>Catheter-associated urinary tract infections (CAUTIs) represent one of the most prevalent and preventable hospital-acquired infections in acute care settings, accounting for approximately 36% of all healthcare-associated infections in the United States (Centers for Disease Control and Prevention [CDC], 2023). At Memorial Hospital West, a retrospective chart review revealed a CAUTI rate of 2.8 per 1,000 catheter-days during the preceding fiscal year—exceeding the National Healthcare Safety Network (NHSN) benchmark of 1.5 per 1,000 catheter-days and signaling a critical gap in current nursing practice.</blockquote>
+        <blockquote>The proposed nurse-driven CAUTI prevention bundle operationalizes the ABCDE framework: Aseptic insertion technique, Bundle compliance audits, Catheter necessity reassessment every 24 hours, Daily perineal care protocols, and Early removal criteria guided by evidence-based indications. Rooted in the Iowa Model of Evidence-Based Practice, this initiative positions bedside nurses as autonomous decision-makers in catheter management, thereby reducing physician-dependent order delays and aligning institutional practice with current NHSN guidelines.</blockquote>
+        <div class="excerpt-caption">Excerpt from DNP Practice Needs Assessment · Approx. 3,200 words · APA 7th · Level I–III Headings · 18 peer-reviewed references</div>
+      </div>
+    </div>
+
+    <div id="tab-psych" class="excerpt-card">
+      <div class="excerpt-header">
+        <div>
+          <div class="excerpt-title">Trauma- and Stressor-Related Disorders: Clinical Presentation and Evidence-Based Management</div>
+          <div class="excerpt-meta">NUR 672 · PMHNP Psychotherapy · Purdue University Global</div>
+        </div>
+        <div class="excerpt-badge">Psychiatric Nursing</div>
+      </div>
+      <div class="excerpt-body">
+        <blockquote>Post-traumatic stress disorder (PTSD) occupies a distinct diagnostic category within the DSM-5-TR, characterized by four core symptom clusters following exposure to actual or threatened death, serious injury, or sexual violence: intrusion symptoms, persistent avoidance, negative alterations in cognition and mood, and marked alterations in arousal and reactivity (American Psychiatric Association, 2022). For the psychiatric-mental health nurse practitioner (PMHNP), accurate differential diagnosis requires systematic exclusion of acute stress disorder, adjustment disorder, and complex PTSD presentations, each of which carries divergent treatment implications.</blockquote>
+        <blockquote>First-line pharmacological management integrates selective serotonin reuptake inhibitors (SSRIs)—specifically sertraline and paroxetine, the only FDA-approved medications for PTSD—alongside trauma-focused psychotherapeutic modalities such as Prolonged Exposure (PE) and Cognitive Processing Therapy (CPT). Emerging evidence supports the adjunctive use of prazosin for trauma-related nightmares; however, the PMHNP must weigh cardiovascular risk profiles, particularly in older adults, prior to initiation (Raskind et al., 2018).</blockquote>
+        <div class="excerpt-caption">Excerpt from NUR 672 Seminar Presentation Paper · APA 7th · DSM-5-TR Aligned · Peer-reviewed citations</div>
+      </div>
+    </div>
+
+    <div id="tab-pharma" class="excerpt-card">
+      <div class="excerpt-header">
+        <div>
+          <div class="excerpt-title">Antihypertensive and Respiratory Agents Across the Lifespan: A Pharmacology Reference</div>
+          <div class="excerpt-meta">NU553 · Advanced Pharmacology · Unit 7 Assignment</div>
+        </div>
+        <div class="excerpt-badge">Pharmacology</div>
+      </div>
+      <div class="excerpt-body">
+        <blockquote>Lisinopril, an angiotensin-converting enzyme (ACE) inhibitor, remains a cornerstone of antihypertensive therapy in adults with co-occurring diabetes mellitus or chronic kidney disease due to its renoprotective mechanism of action. The drug's inhibition of ACE reduces angiotensin II production, leading to vasodilation and decreased aldosterone secretion. Clinically, the PMHNP must monitor serum potassium and creatinine levels biannually, as ACE inhibitors carry a risk of hyperkalemia and acute kidney injury, particularly in patients receiving concurrent NSAID therapy or potassium-sparing diuretics (Woo & Robinson, 2020).</blockquote>
+        <blockquote>In the pediatric population, dosing of antihypertensive agents demands weight-based calculations with strict upper limits; amlodipine at 0.1–0.3 mg/kg/day (max 5 mg/day in children aged 6–17) represents a preferred calcium channel blocker given its favorable tolerability profile and once-daily dosing schedule, which supports adherence in school-age patients. Across all lifespan stages, the advanced practice nurse should systematically assess for drug-drug interactions, organ-specific toxicity, and patient-centered barriers to adherence.</blockquote>
+        <div class="excerpt-caption">Excerpt from NU553 Unit 7 Paper · Drug reference tables included · Weight-based dosing · APA 7th formatted</div>
+      </div>
+    </div>
+
+    <div id="tab-policy" class="excerpt-card">
+      <div class="excerpt-header">
+        <div>
+          <div class="excerpt-title">Washington State SB 6071: Expanding Mental Health Services and Nursing Scope of Practice</div>
+          <div class="excerpt-meta">Healthcare Policy & Advocacy · Team Presentation · May 2025</div>
+        </div>
+        <div class="excerpt-badge">Health Policy</div>
+      </div>
+      <div class="excerpt-body">
+        <blockquote>Washington State Senate Bill 6071 represents a pivotal legislative response to the state's escalating mental health crisis, which saw psychiatric emergency department visits increase by 34% between 2019 and 2023—a trajectory accelerated by the COVID-19 pandemic and exacerbated by persistent workforce shortages in community behavioral health settings. The bill's principal provisions authorize PMHNPs to practice independently without physician oversight agreements, expand Medicaid reimbursement for telehealth-delivered psychiatric services, and allocate $42 million toward crisis stabilization unit infrastructure in rural and underserved counties.</blockquote>
+        <blockquote>Opposition from organized medicine centers on patient safety concerns in high-acuity presentations; however, a comprehensive evidence synthesis by the National Academy of Medicine (2021) found no statistically significant difference in adverse outcomes between APRN-led and physician-led psychiatric care in ambulatory and community settings. The policy implication is clear: legislative barriers to full practice authority perpetuate inequitable access to mental health services, disproportionately affecting communities of color, rural populations, and individuals experiencing homelessness.</blockquote>
+        <div class="excerpt-caption">Excerpt from Policy Analysis & Recommendations section · Team assignment · Conversational speaker notes version also available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials-alt">
+  <div class="section-inner">
+    <div class="section-label">Client Testimonials</div>
+    <h2>What Clients Say</h2>
+    <p class="section-lead">From fellow graduate students to practicing nurses returning for advanced degrees.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testi-text">"Wilson helped me restructure my entire DNP literature review. The APA formatting was spotless and the clinical language was exactly what my committee expected. Went from a B to an A on the revision."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div><div class="testi-name">Amara K.</div><div class="testi-role">DNP Student · Family NP Track</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testi-text">"I needed a SOAP note template for my clinical rotation that actually reflected psychiatric assessment. Wilson built one that matched exactly what my preceptor wanted — thorough MSE, risk stratification, the works."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MO</div>
+          <div><div class="testi-name">Marcus O.</div><div class="testi-role">MSN Student · PMHNP Concentration</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testi-text">"Outstanding pharmacology tables. Every drug class, mechanism, side effect, and nursing consideration laid out clearly. My professor commented on the quality of the clinical detail — I'll definitely be coming back."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">PW</div>
+          <div><div class="testi-name">Priya W.</div><div class="testi-role">RN-BSN to MSN Bridge Student</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testi-text">"I was stuck on my health policy paper for weeks. Wilson turned around a polished, well-argued analysis of our state's mental health legislation in under 48 hours. The citations were perfect."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LN</div>
+          <div><div class="testi-name">Layla N.</div><div class="testi-role">MSN Student · Community Health</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: white;">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2>Simple, Collaborative Process</h2>
+    <p class="section-lead">From intake to delivery, every project is handled with academic integrity and clinical precision.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Brief & Scope</div>
+        <p class="step-desc">Share your assignment prompt, course level, and any rubric or guidelines. We'll align on scope and turnaround.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Research & Draft</div>
+        <p class="step-desc">Deep literature search, peer-reviewed sources, and clinical grounding. First draft with full APA formatting.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Review & Revise</div>
+        <p class="step-desc">Collaborative review round. Revisions included — your voice and course requirements come first.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Final Delivery</div>
+        <p class="step-desc">Polished Word document, properly formatted, with references and optional turnitin-ready version.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background: var(--cream);">
+  <div class="section-inner">
+    <div class="section-label">Get in Touch</div>
+    <h2>Start Your Project</h2>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>Available for graduate-level nursing papers, clinical documentation, literature reviews, EBP projects, and pharmacology assignments. Turnaround from 48 hours.</p>
+        <ul class="contact-list">
+          <li><div class="contact-icon">&#9993;</div>wilson.rn.writer@gmail.com</li>
+          <li><div class="contact-icon">&#127891;</div>Purdue University Global · MSN-PMHNP</li>
+          <li><div class="contact-icon">&#128336;</div>48–72 hour standard turnaround</li>
+          <li><div class="contact-icon">&#128205;</div>Remote · Available Globally</li>
+        </ul>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@university.edu">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full">
+            <label>Project Type</label>
+            <select>
+              <option value="">Select type...</option>
+              <option>DNP / EBP Paper</option>
+              <option>Literature Review</option>
+              <option>Psychiatric Clinical Documentation</option>
+              <option>Pharmacology Assignment</option>
+              <option>Health Policy Analysis</option>
+              <option>SOAP / Clinical Note</option>
+              <option>APA Formatting / Editing</option>
+              <option>PowerPoint Presentation</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full">
+            <label>Tell me about your project</label>
+            <textarea rows="4" placeholder="Course level, word count, due date, rubric details..."></textarea>
+          </div>
+        </div>
+        <button class="form-submit">Send Inquiry &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Wilson<span>.RN</span></div>
+  <p>Academic Writing Portfolio · Nursing &amp; Healthcare · &copy; 2026</p>
+</footer>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.excerpt-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
